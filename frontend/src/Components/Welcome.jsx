@@ -24,8 +24,8 @@ const Welcome = () => {
 
     return (
         <div className="flex w-full justify-center item-center">
-            <div className="flex md:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
-                <div className="flex flex-1 justify-start flex-col md:mr-10">
+            <div className="flex md:flex-row flex-col items-start justify-between md:p-20 px-4">
+                <div className="flex flex-1 justify-start flex-col md:mr-20">
                     <h1 className="text-2xl sm:text-4xl text-white text-gradient py-1">
                         Send crypto <br /> across the world
                     </h1>
