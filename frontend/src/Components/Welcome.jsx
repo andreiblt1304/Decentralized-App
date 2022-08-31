@@ -19,9 +19,8 @@ const Input = ({ placeholder, name, type, value }) => (
 )
 const Welcome = () => {
 
-    const connectWallet = () => {
-
-    }
+    const connectWallet = () => {}
+    const handleSubmit = () => {}
 
     return (
         <div className="flex w-full justify-center item-center">
@@ -85,8 +84,28 @@ const Welcome = () => {
                     </div>
                 </div>
                 <div className="p-5 sm:w-96 w-full flex flex-col justify-start item-center blue-glassmorphism">
+                    <div className="h-[1px] 2-full bg-gray-400 my-2"/>
+
                     <Input placeholder="Address to" name="addressTo" type="text" hadleChange={() => {}}/>
+                    <Input placeholder="Amount (ETH)" name="amount" type="number" hadleChange={() => {}}/>
+                    <Input placeholder="Keyword (GIF)" name="keyword" type="text" hadleChange={() => {}}/>
+                    <Input placeholder="Message" name="message" type="text" hadleChange={() => {}}/>
+
+                    <div className="h-[1px] w-full bg-gray-400 my-2"/>
+
+                    {false ? (
+                        <Loader/>
+                    ) : (
+                        <button 
+                            type="button"
+                            onClick={handleSubmit}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
+                        >
+                            Send now
+                        </button>
+                    )}
                 </div>
+                
             </div>
         </div>
     </div>
