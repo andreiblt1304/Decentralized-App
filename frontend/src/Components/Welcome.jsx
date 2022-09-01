@@ -1,8 +1,10 @@
+import React, { useContext } from 'react'
 import { AiFillAlipayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 import ethIcon from "../images/ethIcon.png";
 import { Loader } from './';
+import { TransactionContext } from "../context/TransactionContext";
 
 const commonStyles = "min-h-[70px] sm:px-0 px-2 sm:min-w-[auto] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
 
@@ -19,7 +21,9 @@ const Input = ({ placeholder, name, type, value }) => (
 )
 const Welcome = () => {
 
-    const connectWallet = () => {}
+    const { connectWallet } = useContext(TransactionContext);
+    //console.log(value);
+
     const handleSubmit = () => {}
 
     return (
@@ -34,7 +38,7 @@ const Welcome = () => {
                     </p>
                     <button
                     type="button"
-                    onClick={ connectWallet }
+                    onClick={connectWallet}
                     className="flex flex-row justify-center items-center my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer hover:bg-[#2546bd]"
                     >
                         <p className="text-white text-base font-semibold">

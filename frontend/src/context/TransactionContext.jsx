@@ -1,8 +1,8 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import { contractABI, contractAddress } from '../Utils/constants';
 
-export const TransactionsContext = React.createContext();
+export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
@@ -15,13 +15,72 @@ const getEthereumContract = () => {
         provider,
         signer,
         transactionContract
-    )
+    );
 }
 
 export const TransactionProvider = ({ children }) => {
+    const [currentAccount, setCurrentAccount] = useState('');
+    
+    const checkIfWalletConnected = async () => {
+        try
+        {
+            if(!ethereum)
+            {
+                return alert("Please install Metamask");
+            }
+    
+            const accounts = await ethereum.request({ method: 'eth_accounts' });
+    
+            if(accounts.length)
+            {
+                setCurrentAccount(accounts[0]);
+    
+                //getAllTransactions()
+            }
+            else
+            {
+                console.log("No accounts found");
+            }
+    
+            console.log(accounts);
+        }
+        catch(error)
+        {
+            console.log(error);
+
+            throw new Error("No ethereum object");
+        }
+        
+        
+    }
+
+    const connectWallet = async () => {
+        try
+        {
+            if(!ethereum)
+            {
+                return alert("Please install Metamask");
+            }
+
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+
+            setCurrentAccount(accounts[0]);
+        }
+        catch(error)
+        {
+            console.log(error);
+
+            throw new Error("No ethereum object");
+        }
+    }
+
+    useEffect(() => {
+        checkIfWalletConnected();
+    }, []);
+
     return (
-        <TransactionsContext.Provider>
-            { children }
-        </TransactionsContext.Provider>
+        <TransactionContext.Provider value={{ connectWallet }}>
+            {children}
+        </TransactionContext.Provider>
     )
 }
